@@ -37,12 +37,12 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
 
     /*Start Listning to the client request*/
-    io.on("New_Message",(data)=>{
+    io.on("some_event",(data)=>{
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
         */
-        socket.emit("New_Message",data);
+        socket.emit("received event:",data);
     });
 });
 
