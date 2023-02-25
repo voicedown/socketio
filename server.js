@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is live now");
+    res.send("Wohoo.. Our server is live nowggggg");
 });
 /*
 app.post("/broadcast",(req, res)=>{
