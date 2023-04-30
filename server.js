@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is livffe now");
+    res.send("Wohoo.. Our server is livffe nowok");
 });
 /*
 app.post("/broadcast",(req, res)=>{
@@ -42,7 +42,7 @@ socket.on("connect", (io)=>{
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
         */
-        socket.emit("received event:",data);
+        socket.emit("some_event",data);
     });
 });
 
