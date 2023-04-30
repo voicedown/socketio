@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is livffe nowok");
+    res.send("Wohoo.. Our server is livffe nowokno");
 });
 /*
 app.post("/broadcast",(req, res)=>{
