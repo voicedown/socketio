@@ -36,16 +36,15 @@ app.post("/broadcast",(req, res)=>{
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-	
-    io.on("connection", socket => {
-    socket.use(([event], next) => {
-        socket.event = event;
-        next();
-    });
-    socket.on("myevent", (data) => {
-        console.log(socket.event); // Will print "myevent" in that case
-    });
-});
+	// List of events relayed to client
+const events = ['first_event', 'second_event', 'third_event'];
+
+for (const event of events)
+  socket.on(event, function(data) {
+    console.log(event);     // You have access to the event name
+    client.emit(e, data);   // Relay to client
+  }); 
+};
 });
 
 /* NOTE
