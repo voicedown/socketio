@@ -33,13 +33,22 @@ app.post("/broadcast",(req, res)=>{
     res.send("Wohoo.. Our server is live now");
 })
 */
+const io = require('socket.io')();
+const adminNamespace = io.of('/chat');
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	
-   socket.onAny((event, ...args) => {
-  console.log(`got ${event}`);
-});
+    /*Start Listning to the client request*/
+    io.on("some_event",(data)=>{
+	    console.log("Name : " + adminNamespace);
+	    
+        /* 
+           New_Message is the event name on which we'll emit & Listen to data to & from our app
+           you can rename 'New_Message' with your desired event name.
+        */
+        socket.emit("some_event",data);
+    });
 });
 
 /* NOTE
