@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is livffe ohh");
+    res.send("Wohoo.. Our server is livffe new");
 });
 /*
 app.post("/broadcast",(req, res)=>{
@@ -37,20 +37,14 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	
-var socket = require('socket.io');
-
-function registerEvent(eventName, cb) {
-  socket.on(eventName, function () {
-    var args = [].slice.apply(arguments);
-    args.unshift(eventName);
-    cb.apply(null, args);
-  });
-}
-
-registerEvent('my_event', function (eventName, data) {
-  // now you can access event name
-  // it is prepended to arguments
-  console.log('Event name', eventName);
+    io.on("connection", socket => {
+    socket.use(([event], next) => {
+        socket.event = event;
+        next();
+    });
+    socket.on("myevent", (data) => {
+        console.log(socket.event); // Will print "myevent" in that case
+    });
 });
 });
 
