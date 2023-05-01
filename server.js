@@ -35,10 +35,11 @@ app.post("/broadcast",(req, res)=>{
 */
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
-    console.log("Name : " + (data));
+    
 	
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
+	    console.log("Name : " + data);
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
