@@ -36,8 +36,12 @@ app.post("/broadcast",(req, res)=>{
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-let eventName = 'myCustomEvent';
+let eventName;
 
+	socket.on('setEventName', (name) => {
+    eventName = name;
+    console.log(`Event name set to "${eventName}"`);
+  });
 	
     /*Start Listning to the client request*/
     io.on(eventName, (data)=>{
