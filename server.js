@@ -33,12 +33,12 @@ app.post("/broadcast",(req, res)=>{
     res.send("Wohoo.. Our server is live now");
 })
 */
-const io = require('socket.io')();
-const adminNamespace = io.of('/chat');
+
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-	
+	const io = require('socket.io')();
+const adminNamespace = io.of('/chat');
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
 	    console.log("Name : " + adminNamespace);
