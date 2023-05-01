@@ -37,27 +37,21 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	
-   var socket = io.connect();
-var globalEvent = "*";
-socket.$emit = function (name) {
-    if(!this.$events) return false;
-    for(var i=0;i<2;++i){
-        if(i==0 && name==globalEvent) continue;
-        var args = Array.prototype.slice.call(arguments, 1-i);
-        var handler = this.$events[i==0?name:globalEvent];
-        if(!handler) handler = [];
-        if ('function' == typeof handler) handler.apply(this, args);
-        else if (io.util.isArray(handler)) {
-            var listeners = handler.slice();
-            for (var i=0, l=listeners.length; i<l; i++)
-                listeners[i].apply(this, args);
-        } else return false;
+   ar original_$emit = socket.$emit;
+socket.$emit = function() {
+    var args = Array.prototype.slice.call(arguments);
+    original_$emit.apply(socket, ['*'].concat(args));
+    if(!original_$emit.apply(socket, arguments)) {
+        original_$emit.apply(socket, ['default'].concat(args));
     }
-    return true;
-};
-socket.on(globalEvent,function(event){
-    var args = Array.prototype.slice.call(arguments, 1);
-    console.log("Global Event = "+event+"; Arguments = "+JSON.stringify(args));
+}
+
+socket.on('default',function(event, data) {
+    console.log('Event not trapped: ' + event + ' - data:' + JSON.stringify(data));
+});
+
+socket.on('*',function(event, data) {
+    console.log('Event received: ' + event + ' - data:' + JSON.stringify(data));
 });
 });
 
