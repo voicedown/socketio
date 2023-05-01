@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is livffe room");
+    res.send("Wohoo.. Our server is livffe new");
 });
 /*
 app.post("/broadcast",(req, res)=>{
@@ -35,8 +35,10 @@ app.post("/broadcast",(req, res)=>{
 */
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
-    console.log("Name : " + io.rooms);
-
+    console.log("Name : " + io.data);
+    console.log("event : " + io.namespace);
+    console.log("Name1 : " + io.eventname);
+	
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
         /* 
