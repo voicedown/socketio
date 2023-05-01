@@ -37,15 +37,21 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	
-    /*Start Listning to the client request*/
-    io.on("some_event",(data)=>{
-	    console.log("Name : " + io.event);
-        /* 
-           New_Message is the event name on which we'll emit & Listen to data to & from our app
-           you can rename 'New_Message' with your desired event name.
-        */
-        socket.emit("some_event",data);
-    });
+var socket = require('socket.io');
+
+function registerEvent(eventName, cb) {
+  socket.on(eventName, function () {
+    var args = [].slice.apply(arguments);
+    args.unshift(eventName);
+    cb.apply(null, args);
+  });
+}
+
+registerEvent('my_event', function (eventName, data) {
+  // now you can access event name
+  // it is prepended to arguments
+  console.log('Event name', eventName);
+});
 });
 
 /* NOTE
