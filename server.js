@@ -37,11 +37,9 @@ app.post("/broadcast",(req, res)=>{
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-	const io = require('socket.io')();
-const adminNamespace = io.of('/chat');
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
-	    console.log("Name : " + adminNamespace);
+	    console.log("Name : " + '/chat');
 	    
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
