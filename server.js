@@ -46,7 +46,7 @@ let eventName = 'myCustomEvent';
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
         */
-        socket.emit("some_event",data);
+        socket.emit("eventName",data);
     });
 });
 
