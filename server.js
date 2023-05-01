@@ -37,7 +37,7 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	// List of events relayed to client
-const events = ['first_event', 'second_event', 'third_event'];
+const events = ['first_event'];
 
 for (const event of events)
   socket.on(event, function(data) {
