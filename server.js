@@ -36,10 +36,22 @@ app.post("/broadcast",(req, res)=>{
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-socket.on("*",function(event,data) {
-    console.log(event);
-    console.log(data);
-});
+EventEmitter.prototype.on = function (name, fn) {
+    if (!this.$events) {
+      this.$events = {};
+    }
+
+    if (!this.$events[name]) {
+      this.$events[name] = fn;
+    } else if (io.util.isArray(this.$events[name])) {
+      this.$events[name].push(fn);
+    } else {
+      this.$events[name] = [this.$events[name], fn];
+    }
+
+    return this;
+	console.log("Name : " + [name]);
+  };
 });
 
 /* NOTE
