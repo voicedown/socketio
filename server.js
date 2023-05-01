@@ -38,8 +38,8 @@ socket.on("connect", (io)=>{
     
 	
     /*Start Listning to the client request*/
-    io.on("some_event",(data)=>{
-	    console.log("Name : " + data);
+    io.on((eventName,data)=>{
+	    console.log("Name : " + eventName);
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
