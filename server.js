@@ -37,21 +37,8 @@ socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
 	
-   ar original_$emit = socket.$emit;
-socket.$emit = function() {
-    var args = Array.prototype.slice.call(arguments);
-    original_$emit.apply(socket, ['*'].concat(args));
-    if(!original_$emit.apply(socket, arguments)) {
-        original_$emit.apply(socket, ['default'].concat(args));
-    }
-}
-
-socket.on('default',function(event, data) {
-    console.log('Event not trapped: ' + event + ' - data:' + JSON.stringify(data));
-});
-
-socket.on('*',function(event, data) {
-    console.log('Event received: ' + event + ' - data:' + JSON.stringify(data));
+   socket.onAny((event, ...args) => {
+  console.log(`got ${event}`);
 });
 });
 
