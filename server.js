@@ -25,7 +25,7 @@ http.listen(port, ()=>{
 });
 
 app.get("/",(req,res)=>{
-    res.send("Wohoo.. Our server is livffe new");
+    res.send("Wohoo.. Our server is livffe ohh");
 });
 /*
 app.post("/broadcast",(req, res)=>{
@@ -38,8 +38,8 @@ socket.on("connect", (io)=>{
     
 	
     /*Start Listning to the client request*/
-    io.on((eventName,data)=>{
-	    console.log("Name : " + eventName);
+    io.on((event,data)=>{
+	    console.log("Name : " + event);
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
            you can rename 'New_Message' with your desired event name.
