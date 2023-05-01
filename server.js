@@ -39,7 +39,7 @@ socket.on("connect", (io)=>{
     
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
-	    console.log("Name : " + '/chat');
+	    console.log("Name : " + '/my-namespace');
 	    
         /* 
            New_Message is the event name on which we'll emit & Listen to data to & from our app
