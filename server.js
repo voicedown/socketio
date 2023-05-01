@@ -44,7 +44,6 @@ for (const event of events)
     console.log(event);     // You have access to the event name
     client.emit(e, data);   // Relay to client
   }); 
-};
 });
 
 /* NOTE
