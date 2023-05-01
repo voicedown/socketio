@@ -35,6 +35,7 @@ app.post("/broadcast",(req, res)=>{
 */
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
+    console.log(io.handshake);
 
     /*Start Listning to the client request*/
     io.on("some_event",(data)=>{
