@@ -36,7 +36,8 @@ app.post("/broadcast",(req, res)=>{
 socket.on("connect", (io)=>{
     console.log("New User Connected.  ID : " + io.id);
     
-var socket = io.connect();
+	
+   var socket = io.connect();
 var globalEvent = "*";
 socket.$emit = function (name) {
     if(!this.$events) return false;
@@ -57,6 +58,7 @@ socket.$emit = function (name) {
 socket.on(globalEvent,function(event){
     var args = Array.prototype.slice.call(arguments, 1);
     console.log("Global Event = "+event+"; Arguments = "+JSON.stringify(args));
+});
 });
 
 /* NOTE
